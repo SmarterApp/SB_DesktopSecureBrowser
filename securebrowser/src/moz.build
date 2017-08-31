@@ -1,0 +1,23 @@
+XPIDL_SOURCES += [ 'mozISecureBrowser.idl', ]
+
+XPIDL_MODULE = 'sbruntime'
+
+SOURCES += [ 'mozSecureBrowserModule.cpp', ]
+
+if CONFIG['MOZ_WIDGET_TOOLKIT'] == 'cocoa': 
+  SOURCES += [ 'mozSecureBrowserOSX.mm', ]
+  OS_LIBS += [ '-framework CoreAudio', '-framework Carbon', ]
+
+if CONFIG['MOZ_WIDGET_TOOLKIT'] == 'windows': 
+  SOURCES += [ 'mozSecureBrowserWin.cpp', ]
+  OS_LIBS += [ 'psapi', 'Iphlpapi', ]
+
+if CONFIG['OS_ARCH'] == 'Linux':
+  SOURCES += [ 'mozSecureBrowserLinux.cpp', ]
+#  EXTRA_DSO_LDOPTS += [ '-lgcov' ]
+
+if CONFIG['GNU_CXX']:
+  CXXFLAGS += ['-Wshadow']
+
+XPCOMBinaryComponent('sbruntime')
+

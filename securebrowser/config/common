@@ -1,0 +1,2 @@
+export SB_VERSION=`cat $topsrcdir/securebrowser/config/version.txt`
+export SB_APP_NAME=`cat $topsrcdir/securebrowser/config/appname.txt | tr '[:upper:]' '[:lower:]' | sed -e's:securebrowser::g' | sed -e's:browser::g'`

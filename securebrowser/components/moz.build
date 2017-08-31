@@ -1,0 +1,11 @@
+
+EXTRA_COMPONENTS += [
+    'BrowserEvents.js',
+    'BrowserSettings.js',
+    'BrowserTTS.js',
+    'securebrowser-service.manifest',
+]
+
+EXTRA_PP_COMPONENTS += [ 'BrowserDOM.js', 'BrowserDOM.manifest', 'BrowserSecurity.js', 'securebrowser-service.js', ]
+
+

@@ -1,0 +1,40 @@
+# This file specifies the build flags for SecureBrowser.  
+
+# sb custom variables
+. $topsrcdir/securebrowser/config/common
+
+# export PKG_CONFIG_PATH=/usr/lib64/pkgconfig
+
+mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/../opt-${SB_APP_NAME}-${SB_VERSION}-@CONFIG_GUESS@
+mk_add_options MOZ_MAKE_FLAGS="-s -j4"
+mk_add_options MOZ_PGO=1
+
+ac_add_options --enable-application=securebrowser
+ac_add_options --enable-update-channel=release
+ac_add_options --enable-official-branding
+ac_add_options --enable-js-shell
+ac_add_options --enable-default-toolkit=cairo-gtk3
+ac_add_options --enable-crashreporter
+ac_add_options --enable-elf-hack
+ac_add_options --enable-rust
+
+# ac_add_options --enable-stdcxx-compat
+
+export BUILDING_RELEASE=1
+# Needed to enable breakpad in application.ini
+export MOZILLA_OFFICIAL=1
+
+export MOZ_TELEMETRY_REPORTING=1
+
+# Package js shell.
+export MOZ_PACKAGE_JSSHELL=1
+
+# enable debug symbols
+# export MOZ_DEBUG_SYMBOLS=1
+# ac_add_options --enable-debug-symbols
+# ac_add_options --disable-install-strip
+
+export RUSTC=/usr/local/rustc/bin/rustc
+export CARGO=/usr/local/rustc/bin/cargo
+
+

@@ -1,0 +1,15 @@
+securebrowser.jar:
+%  content securebrowser %content/ contentaccessible=yes
+
+* content/securebrowser.xul             (content/securebrowser.xul)
+* content/splash.html                   (content/splash.html)
+* content/net-error.html                (content/net-error.html)
+* content/hiddenWindow.xul              (content/hiddenWindow.xul)
+* content/baseMenuOverlay.xul           (content/baseMenuOverlay.xul)
+* content/js/securebrowser.js           (content/js/securebrowser.js)
+  content/js/debug.js                   (content/js/debug.js)
+* content/js/utils.js                   (content/js/utils.js)
+* content/js/tab-content.js             (content/js/tab-content.js)
+
+% override chrome://global/content/netError.xhtml chrome://securebrowser/content/net-error.html
+

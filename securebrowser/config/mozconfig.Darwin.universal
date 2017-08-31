@@ -1,0 +1,48 @@
+. $topsrcdir/build/macosx/universal/mozconfig 
+
+# sb custom variables
+. $topsrcdir/securebrowser/config/common
+
+mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/../opt-${SB_APP_NAME}-${SB_VERSION}-@CONFIG_GUESS@
+mk_add_options MOZ_MAKE_FLAGS="-s -j8"
+
+# it is IMPERATIVE this flag is set as google breakpad
+# which is a dependency of crashreporter  will fail to compile 
+mk_add_options HOST_CXXFLAGS="-isysroot /Developer/SDKs/MacOSX10.9.sdk"
+
+ac_add_options --enable-application=securebrowser
+ac_add_options --with-macos-sdk=/Developer/SDKs/MacOSX10.9.sdk
+ac_add_options --enable-official-branding
+ac_add_options --enable-verify-mar
+ac_add_options --with-ccache
+ac_add_options --enable-js-shell
+ac_add_options --enable-rust
+ac_add_options --enable-crashreporter
+ac_add_options --enable-release
+ac_add_options --enable-update-channel=release
+
+# ac_add_options --with-macos-sdk=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk
+# ac_add_options --with-google-api-keyfile=/builds/gapi.data
+# ac_add_options --with-mozilla-api-keyfile=/builds/mozilla-desktop-geoloc-api.key
+# ac_add_options --disable-tests
+# ac_add_options --disable-crashreporter
+
+export MOZILLA_OFFICIAL=1
+export MOZ_TELEMETRY_REPORTING=1
+export MOZ_PACKAGE_JSSHELL=1
+export BUILDING_RELEASE=1
+
+###
+# it is IMPERATIVE this flag is set as google breakpad
+# which is a dependency of crashreporter  will fail to compile 
+##
+export HOST_CXXFLAGS="-isysroot /Developer/SDKs/MacOSX10.9.sdk"
+
+if [ "$TARGET_CPU" = "x86_64" ]; then
+  export RUSTC="/usr/local/rustc/bin/rustc"
+  export CARGO="/usr/local/rustc/bin/cargo"
+else
+  export RUSTC="/usr/local/rustc32/bin/rustc"
+  export CARGO="/usr/local/rustc32/bin/cargo"
+fi
+

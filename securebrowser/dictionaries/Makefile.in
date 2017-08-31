@@ -1,0 +1,8 @@
+include $(topsrcdir)/config/rules.mk
+
+libs:: 
+	ln -sf $(srcdir)/es_MX.aff $(DIST)/bin/dictionaries;
+	ln -sf $(srcdir)/es_MX.dic $(DIST)/bin/dictionaries;
+	ln -sf $(srcdir)/es-ES.aff $(DIST)/bin/dictionaries;
+	ln -sf $(srcdir)/es-ES.dic $(DIST)/bin/dictionaries;
+

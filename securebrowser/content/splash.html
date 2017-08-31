@@ -1,0 +1,93 @@
+<!--
+// *******************************************************************************
+// Educational Online Test Delivery System
+// Copyright (c) 2017 American Institutes for Research
+//
+// Distributed under the AIR Open Source License, Version 1.0
+// See accompanying file AIR-License-1_0.txt or at
+// http://www.smarterapp.org/documents/American_Institutes_for_Research_Open_Source_Software_License.pdf
+// *******************************************************************************
+-->
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Secure Browser Lauching: Please Wait</title>
+<link rel="stylesheet" type="text/css" href="chrome://securebrowser/skin/splash.css">
+<script type="text/javascript">
+
+  const Ci = Components.interfaces;
+  const Cc = Components.classes;
+
+  function loadURL (aURL) { location = aURL; }
+
+  window.onload  = function()
+  { 
+    var wm = Cc["@mozilla.org/appshell/window-mediator;1"].getService(Ci.nsIWindowMediator);
+    var win = wm.getMostRecentWindow("navigator:browser");
+
+    var pref = Cc["@mozilla.org/preferences-service;1"].getService(Ci.nsIPrefService).QueryInterface(Ci.nsIPrefBranch);
+
+    var url;
+
+    var base64URL = null;
+
+    try { base64URL = pref.getCharPref("securebrowser.startup.base64page"); }
+    catch (e) {}
+   
+    if (win.arguments.length == 5)
+    {
+      let uri = win.arguments[0];
+
+      if (uri instanceof Ci.nsISupportsArray)
+      {
+        let count = uri.Count();
+        for (let i = 0; i < count; i++)
+        {
+          let uriString = uri.GetElementAt(i).QueryInterface(Ci.nsISupportsString);
+          url = uriString 
+          break;
+        }
+      }
+    }
+      else
+    {
+      url = atob(pref.getCharPref("securebrowser.startup.homepage"));
+    }
+
+    if (base64URL) url = base64URL;
+
+    try 
+    { 
+      let alturl = pref.getCharPref("securebrowser.security.altHomePage.url"); 
+      if (alturl) 
+      {
+        let URIFixup = Components.classes["@mozilla.org/docshell/urifixup;1"].getService(Components.interfaces.nsIURIFixup);
+        url = URIFixup.createFixupURI(alturl, 0).spec;
+      }
+    }
+      catch (e) {}
+
+    setTimeout(loadURL, 1000, url);
+  };
+
+</script>
+</head>
+
+<body>
+	<div id="splash">
+		<div id="topBar">
+	    	<a id="logOut" href="#" onclick="SecureBrowser.security.close(false);" tabindex="1003"><span i18n-content="StudentMaster.Button.Close">Close Secure Browser</span></a>
+    	</div>
+        <div id="messageArea">
+        	<div class="iconArea">
+            	<img src="chrome://branding/content/sbicon.png" alt="Secure Browser Icon" class="icon">
+#expand            <h1><span id="appName">__SECURE_BROWSER_APPNAME__</span> <span id="sbVerNum">v__SECURE_BROWSER_VERSION__</span><span id="osID"></span></h1>
+                <img src="chrome://securebrowser/skin/loadingAnimation.gif" alt="" class="loading">
+            </div>
+            <br>
+            <p class="info">Looking for an internet connection...</p>
+        </div>
+   	</div>
+</body>
+</html>

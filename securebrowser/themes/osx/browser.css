@@ -1,0 +1,24 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+@import url("chrome://global/skin/");
+
+%filter substitution
+%define forwardTransitionLength 150ms
+%define conditionalForwardWithUrlbar window:not([chromehidden~="toolbar"]) #urlbar-wrapper
+%define toolbarButtonPressed :hover:active:not([disabled="true"]):not([cui-areatype="menu-panel"])
+%define windowButtonMarginTop 11px
+
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+@namespace html url("http://www.w3.org/1999/xhtml");
+@namespace svg url("http://www.w3.org/2000/svg");
+
+@conditionalForwardWithUrlbar@ {
+  clip-path: url("chrome://securebrowser/content/securebrowser.xul#urlbar-back-button-clip-path");
+  margin-inline-start: calc(-1 * var(--backbutton-urlbar-overlap));
+}
+
+%include shared.inc
+
+

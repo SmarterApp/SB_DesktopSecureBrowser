@@ -1,0 +1,33 @@
+%if 0
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+%endif
+
+@import url("chrome://global/skin/");
+
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+@namespace html url("http://www.w3.org/1999/xhtml");
+
+%include ../shared/browser.inc
+%include linuxShared.inc
+%filter substitution
+
+%define forwardTransitionLength 150ms
+%define conditionalForwardWithUrlbar window:not([chromehidden~="toolbar"]) #urlbar-container
+%define conditionalForwardWithUrlbarWidth 30
+
+#forward-button > .toolbarbutton-icon {
+  background-clip: padding-box;
+  clip-path: url("chrome://securebrowser/content/securebrowser.xul#keyhole-forward-clip-path");
+  margin-left: -6px;
+  border-left-style: none;
+  border-radius: 0;
+  padding: 2px 3px 2px 9px;
+  border: 1px solid #9a9a9a;
+}
+
+@conditionalForwardWithUrlbar@[forwarddisabled] > #urlbar-wrapper {
+  clip-path: url("chrome://securebrowser/content/securebrowser.xul#urlbar-back-button-clip-path");
+}
+

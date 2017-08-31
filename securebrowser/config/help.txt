@@ -1,0 +1,15 @@
+Kiosk Build commands:
+
+make version        :   to display current version
+make run            :   run the securebrowser client from your terminal
+make                :   to compile current binary in ../dist
+make type           :   to build an installer (in ../dist) 
+                        where supported types are: 'dev, release'.
+
+                        eg: make release
+                            make dev
+
+make help           :   to display this information.
+
+Mozdev Group, Inc, 2007
+

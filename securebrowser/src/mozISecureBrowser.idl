@@ -1,0 +1,60 @@
+// *******************************************************************************
+// Educational Online Test Delivery System
+// Copyright (c) 2017 American Institutes for Research
+//
+// Distributed under the AIR Open Source License, Version 1.0
+// See accompanying file AIR-License-1_0.txt or at
+// http://www.smarterapp.org/documents/American_Institutes_for_Research_Open_Source_Software_License.pdf
+// *******************************************************************************
+
+#include "nsISupports.idl"
+                                                                                                    
+[scriptable, uuid(80BD7AE0-8B51-4766-85F7-578709F6F635)]
+                                                                                                    
+interface mozISecureBrowser : nsISupports
+{
+    readonly attribute AString version;
+    readonly attribute AString services;
+    AString getRunningProcessList();
+    AString getAllProcesses();
+    AString getMACAddress();
+
+    // Speech Synth Methods
+    void initialize();
+    void uninitialize();
+    void initializeListener(in AString type);
+    void play(in AString text);
+    void pause();
+    void stop();
+    void resume();
+    attribute AString voiceName;
+    attribute int32_t volume;
+    attribute int32_t rate;
+    attribute int32_t pitch;
+    readonly attribute AString status;
+    readonly attribute AString voices;
+
+    readonly attribute AString key;
+
+    attribute int32_t systemVolume;
+    attribute boolean systemMute;
+    attribute boolean permissive;
+
+    readonly attribute AString soxVersion;
+    readonly attribute boolean clearTypeEnabled;
+
+    void killProcess(in AString processName);
+    void startProcess(in AString processPath);
+
+    void lockScreen(in boolean aIsAdmin);
+
+    readonly attribute AString OSversion;
+
+    AString getEnvVariable(in AString name);
+};
+
+%{ C++
+#define MOZ_SECUREBROWSER_CONTRACT_ID \
+"@mozilla.org/securebrowser;1"
+%}
+

@@ -1,0 +1,144 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/*reset statement*/
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* Begin Launcher CSS */
+
+#splash{
+	display: block;
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background: linear-gradient(#556977, #dcecf3);
+	color: white;
+	font-family: helvetica, arial, sans-serif;
+	text-shadow: 1px 1px 1px black;
+	min-height: 500px;
+}
+
+
+/* TopBar & its Buttons */
+#topBar{
+	display: block;
+	position: relative;
+	top: 0; 
+	left: 0;
+	text-align: right;
+	line-height: 1.2em;
+	font-size: 0.9em;
+	padding: 0.5em 0.2em;
+}
+#logOut{
+	border-radius: 5px;
+	display: inline;
+	background-color: #c6d8e2;
+    color: #000000;
+    line-height: 1em;
+    padding: 1px 5px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background-color .2s ease-in, color .2s ease-in;
+    border: 2px solid #c2c2c2;
+	text-shadow: none;
+	width: auto;
+	cursor: pointer;
+}
+#logOut:hover, #logOut:focus{
+	background-color: #00aeef;
+    border-color: #fff;
+    box-shadow: 0 0 2px #b4b4b4;
+    color: white;
+}
+#logOut span{
+	cursor: pointer;
+}
+
+/*Display area */
+#messageArea{
+	position: absolute;
+	text-align: center;
+	display: block;
+	width: 100%;
+	height: auto;
+	bottom: 35%;
+}
+#messageArea .iconArea{
+	
+}
+#messageArea .iconArea img.icon{
+	/*box-shadow: 3px 3px 5px 0px #000;*/
+	display: block;
+	margin: 0 auto 1em;
+}
+
+#messageArea .iconArea img.loading{
+	display: block;
+	margin: 0 auto 0;
+}
+
+#messageArea h1{
+	font-size: 2em;
+	line-height: 1.9em;
+}
+#messageArea p.info{
+	font-size: 1.2em;
+	line-height: 1.5em;
+}
+#messageArea p.info span#sbVerNum,
+#messageArea p.info span#osID,
+#messageArea p.info span#appName{
+	color: #4ff;
+}
+
+h1 { color: #4ff; }

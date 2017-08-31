@@ -1,0 +1,3 @@
+component {601ac075-ab89-41c1-a732-a835dd1c7442} securebrowser-service.js application={ec8030f7-c20a-464f-9b0e-13a3a9e97384}
+contract @mozdevgroup.com/securebrowser/clh;1 {601ac075-ab89-41c1-a732-a835dd1c7442} application={ec8030f7-c20a-464f-9b0e-13a3a9e97384}
+category command-line-handler nsSBCommandLineHandler @mozdevgroup.com/securebrowser/clh;1 application={ec8030f7-c20a-464f-9b0e-13a3a9e97384}

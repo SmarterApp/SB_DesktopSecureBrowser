@@ -1,0 +1,68 @@
+#include "securebrowser.mmh"
+;
+;Load and configure MAKEMSI, apply my branding to MSI
+
+; define the newer windows versions
+#define? CONDITION_IS_WINDOWS_8             VersionNT = "602"                                             ;;Is OS WINDOWS Windows8
+#define? CONDITION_IS_WINDOWS_8_1           VersionNT = "603"                                             ;;Is OS WINDOWS Windows8.1
+#define? CONDITION_IS_WINDOWS_8_OR_GREATER  (<$CONDITION_IS_WINDOWS_8>) or (<$CONDITION_IS_WINDOWS_8_1>)  ;;Is OS WINDOWS Windows8 or Greater
+
+#define? CONDITION_PARTIAL_UI  (<$CONDITION_UI_NONE>) or (<$CONDITION_UI_BASIC>) or (<$CONDITION_UI_REDUCED>) or (<$CONDITION_UI_NO_DIALOGS>)
+
+#define? CONDITION_IS_WINDOWS_8_OR_GREATER_UNINSTALL  (<$CONDITION_IS_WINDOWS_8_OR_GREATER>) and (<$CONDITION_UNINSTALL_ONLY>)  
+
+#define? CONDITION_IS_NORMAL_INSTALL  (<$CONDITION_IS_WINDOWS_8_OR_GREATER>) and (<$CONDITION_UI_FULL>) 
+#define? CONDITION_IS_SILENT_INSTALL  (<$CONDITION_IS_WINDOWS_8_OR_GREATER>) and (<$CONDITION_PARTIAL_UI>)
+
+#define? CONDITION_IS_NORMAL_UNINSTALL  (<$CONDITION_IS_WINDOWS_8_OR_GREATER_UNINSTALL>) and (<$CONDITION_UI_FULL>)  
+#define? CONDITION_IS_SILENT_UNINSTALL  (<$CONDITION_IS_WINDOWS_8_OR_GREATER_UNINSTALL>) and (<$CONDITION_PARTIAL_UI>)  
+#define? CONDITION_IS_CONTROL_PANEL_UNINSTALL  (<$CONDITION_IS_WINDOWS_8_OR_GREATER_UNINSTALL>) and (<$CONDITION_UI_NO_DIALOGS>) and (UILevel <> 2)
+
+#define VER_FILENAME.VER  securebrowser.ver
+
+;--- Want to debug (not common) ---------------------------------------------
+; #debug on
+; #Option DebugLevel=^NONE, +OpSys^
+
+<$DirectoryTree Key="INSTALLDIR" Dir="[ProgramFilesFolder]\__MOZ_APP_NAME__" CHANGE="\" PrimaryFolder="Y">
+<$Files "..\..\dist\msi-stage\*" SubDir="TREE" DestDir="INSTALLDIR">
+
+<$Component "AdvertisedShortcut" Create="Y" Directory_="INSTALLDIR">
+    ;--- Add the files to the "securebrowser" component -----------------------------
+    <$File SOURCE="..\..\dist\msi-stage\__MOZ_APP_NAME__.exe" KeyPath="Y">
+
+    ;--- Add the shortcut (advertise the "complete" feature) ----------------
+    #(
+        ;--- Advertised shortcut in "Start->programs" -----------------------
+        <$Shortcut
+                   Dir="ProgramMenuFolder"          ;;Add to "Start->Programs
+                   Feature="."
+                   Title="__MOZ_APP_NAME__"
+                   Description=^Launch __MOZ_APP_NAME__^
+                   Icon="@.\securebrowser.ico"
+                   WorkDir="INSTALLDIR"
+        >
+        ;--- Advertised shortcut on "Desktop" -----------------------
+        <$Shortcut
+                   Dir="DesktopFolder"          ;;Add to Desktop
+                   Feature="."
+                   Title="__MOZ_APP_NAME__"
+                   Description=^Launch __MOZ_APP_NAME__^
+                   Icon="@.\securebrowser.ico"
+                   WorkDir="INSTALLDIR"
+        >
+    #)
+<$/Component>
+
+    #(
+        ;--- Invoke the install executable ------------------------------------------
+        <$ExeCa
+             EXE="[SystemFolder]msiexec.exe"
+             Args="/i maintenanceservice_installer.exe /qn"
+             WorkDir="INSTALLDIR"
+             SEQ="InstallFinalize-"   
+             Type="immediate ASync AnyRc"
+             Condition="<$CONDITION_IS_SILENT_INSTALL>"
+    >
+    ;------------------------------------------------------------------------------
+    #)

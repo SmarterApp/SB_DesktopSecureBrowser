@@ -1,0 +1,23 @@
+;----------------------------------------------------------------------------
+;
+;    MODULE NAME:   securebrowser.ver
+;
+;    DESCRIPTION:   Simple MSI Installer
+;
+;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+; ProductName      = @MOZ_APP_DISPLAYNAME@
+; DESCRIPTION      = @MOZ_APP_DISPLAYNAME@ Installer
+; Licence          = license.rtf
+; Installed        = WINDOWS_ALL
+; Guid.UpgradeCode = {@MSI_UUID@}
+; MsiName          = @MOZ_APP_DISPLAYNAME@-MSI
+;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+;############################################################################
+VERSION : @MOZ_APP_VERSION@.0
+DATE    : @DATE@
+CHANGES : First cut.
+

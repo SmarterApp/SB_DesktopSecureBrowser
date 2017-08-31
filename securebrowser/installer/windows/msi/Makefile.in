@@ -1,0 +1,48 @@
+include $(DEPTH)/config/autoconf.mk
+
+include $(topsrcdir)/config/config.mk
+
+include $(topsrcdir)/config/rules.mk
+
+DATE_STAMP=`date +"%Y-%m-%d"`
+UUID=`cat $(topsrcdir)/$(MOZ_BRANDING_DIRECTORY)/uuid.txt`
+
+DEFINES += \
+        -DAB_CD=$(AB_CD) \
+        -DMOZ_APP_VERSION=$(MOZ_APP_VERSION) \
+        -DMOZ_APP_DISPLAYNAME=${MOZ_APP_DISPLAYNAME} \
+        -DMOZILLA_VERSION=${MOZILLA_VERSION} \
+        -DMOZ_BRANDING_DIRECTORY=${MOZ_BRANDING_DIRECTORY} \
+        -DDATE=$(DATE_STAMP) \
+        -DMOZ_APP_NAME=$(MOZ_APP_NAME) \
+        -DMSI_UUID=$(UUID) \
+        $(NULL)
+
+msi-installer:
+	mkdir -p $(DIST)/msi/
+	cp $(topsrcdir)/$(MOZ_BRANDING_DIRECTORY)/license.rtf $(DIST)/msi/
+	cp $(topsrcdir)/$(MOZ_BRANDING_DIRECTORY)/msi.bmp $(DIST)/msi/
+	cp $(srcdir)/securebrowser.mmh $(DIST)/msi/
+	cp $(DIST)/branding/securebrowser.ico $(DIST)/msi/
+	$(PERL) $(srcdir)/preprocessor.pl -Fsubstitution $(DEFINES) $(ACDEFINES)  \
+	$(DEPTH)/../mozilla/securebrowser/installer/windows/msi/securebrowser.ver.in > $(DIST)/msi/securebrowser.ver;
+	sed -e 's:__MOZ_APP_NAME__:$(MOZ_APP_NAME):g' $(srcdir)/securebrowser.mm.in > $(DIST)/msi/securebrowser.mm
+	rm -rf $(DIST)/msi-stage
+	mkdir -p  $(DIST)/msi-stage
+	cp -r $(DIST)/../installer-stage/core/* $(DIST)/msi-stage/
+	cd $(DIST)/msi/; \
+	cmd /c "MM.CMD"; \
+	cp out/securebrowser.mm/MSI/$(MOZ_APP_DISPLAYNAME)-MSI.msi ../$(MOZ_APP_DISPLAYNAME)$(MOZ_APP_VERSION)-$(DATE_STAMP).msi
+
+msi-test:
+	cd $(DIST)/msi/; \
+	cmd /c "MM.CMD"; \
+	cp out/securebrowser.mm/MSI/$(MOZ_APP_DISPLAYNAME)-MSI.msi ../$(MOZ_APP_DISPLAYNAME)$(MOZ_APP_VERSION)-$(DATE_STAMP).msi
+
+
+uuid:
+	@echo $(UUID);
+
+version:
+	@echo $(MOZ_APP_VERSION);
+

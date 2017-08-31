@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Secure Browser Lauching: Please Wait</title>
+<link rel="stylesheet" type="text/css" href="chrome://securebrowser/skin/splash.css">
+<script type="text/javascript">
+  
+</script>
+</head>
+
+<body>
+	<div id="splash">
+		<div id="topBar">
+	    	<a id="logOut" href="#" onclick="SecureBrowser.security.close(false);" tabindex="1003"><span id="sb-net-error-close" i18n-content="StudentMaster.Button.Close">Close Secure Browser</span></a>
+    	</div>
+        <div id="messageArea">
+        	<div class="iconArea">
+            	<img src="chrome://branding/content/sbicon.png" alt="Secure Browser Icon" class="icon">
+#expand            <h1><span id="appName">__SECURE_BROWSER_APPNAME__</span> <span id="sbVerNum">v__SECURE_BROWSER_VERSION__</span><span id="osID"></span></h1>
+            </div>
+            <br>
+            <p class="info"><h2>Connection not found...</h2></p>
+        </div>
+   	</div>
+</body>
+</html>

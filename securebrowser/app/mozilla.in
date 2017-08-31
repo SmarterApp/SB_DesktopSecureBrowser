@@ -1,0 +1,29 @@
+#!/bin/sh
+
+PATH=/sbin:usr/sbin:/usr/local/sbin:$PATH
+
+export PATH
+
+os=`uname -s`
+ts=`date "+%APP_NAME%-%s"`
+
+progname="$0"
+curdir=`dirname "$progname"`
+
+cd $curdir;
+
+MOZILLA_BIN="%APP_NAME%"
+
+# check to see if we are LTSP 
+ltsp-info  > /dev/null 2>&1;
+
+if [ $? -eq 0 ]; then
+  ./$MOZILLA_BIN "-CreateProfile" "$ts";
+  ./$MOZILLA_BIN "-P" "$ts";
+else
+  ./$MOZILLA_BIN;
+fi
+
+exit 0;
+# EOF.
+

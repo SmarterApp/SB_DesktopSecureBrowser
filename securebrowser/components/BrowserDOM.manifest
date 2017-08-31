@@ -1,0 +1,20 @@
+component {c83dd7b5-050f-4ede-90dd-c93b9ec0380e} BrowserDOM.js
+contract @mozilla.org/securebrowserdom;1 {c83dd7b5-050f-4ede-90dd-c93b9ec0380e}
+category JavaScript-global-property SecureBrowser @mozilla.org/securebrowserdom;1
+component {042574ba-77e6-4c4e-9c18-3a475ee641a4} BrowserTTS.js
+contract @mozilla.org/securebrowsertts;1 {042574ba-77e6-4c4e-9c18-3a475ee641a4}
+category JavaScript-global-property _tts @mozilla.org/securebrowsertts;1
+component {10a50fd2-10f7-43fc-8f9a-10edafc1bbd1} BrowserSecurity.js
+contract @mozilla.org/securebrowsersecurity;1 {10a50fd2-10f7-43fc-8f9a-10edafc1bbd1}
+category JavaScript-global-property _security @mozilla.org/securebrowsersecurity;1
+component {550b3d53-5496-41e8-95e6-4224e2fc0a96} BrowserSettings.js
+contract @mozilla.org/securebrowsersettings;1 {550b3d53-5496-41e8-95e6-4224e2fc0a96}
+category JavaScript-global-property _settings @mozilla.org/securebrowsersettings;1
+#ifndef SB_OPEN_SOURCE
+component {01659e94-6108-4160-a342-3da80c5f9634} BrowserAIR.js
+contract @mozilla.org/securebrowserair;1 {01659e94-6108-4160-a342-3da80c5f9634}
+category JavaScript-global-property _air @mozilla.org/securebrowserair;1
+#endif
+component {6cb77b12-466e-4115-884d-950f8b1cb273} BrowserEvents.js
+contract @mozilla.org/securebrowserevents;1 {6cb77b12-466e-4115-884d-950f8b1cb273}
+category JavaScript-global-property _events @mozilla.org/securebrowserevents;1

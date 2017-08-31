@@ -1,0 +1,32 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+@import url("chrome://global/skin/");
+
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+@namespace html url("http://www.w3.org/1999/xhtml");
+
+%include ../shared/browser.inc
+%include windowsShared.inc
+%filter substitution
+
+%define toolbarShadowColor hsla(209,67%,12%,0.35)
+%define forwardTransitionLength 150ms
+%define conditionalForwardWithUrlbar window:not([chromehidden~="toolbar"]) #urlbar-wrapper
+
+@conditionalForwardWithUrlbar@ {
+  clip-path: url("chrome://securebrowser/content/securebrowser.xul#urlbar-back-button-clip-path");
+  margin-inline-start: calc(-1 * var(--backbutton-urlbar-overlap));
+}
+
+@media (-moz-os-version: windows-win10) {
+  @conditionalForwardWithUrlbar@ {
+    clip-path: url("chrome://securebrowser/content/securebrowser.xul#urlbar-back-button-clip-path-win10");
+  }
+
+#main-window[tabsintitlebar][sizemode=normal] #toolbar-menubar[autohide="true"][inactive] + #TabsToolbar .tab-background-middle:not([visuallyselected=true]) {
+  clip-path: url(chrome://securebrowser/content/securebrowser.xul#tab-hover-clip-path);
+}
+
+

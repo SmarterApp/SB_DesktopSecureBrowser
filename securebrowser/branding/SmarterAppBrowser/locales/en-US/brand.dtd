@@ -1,0 +1,5 @@
+#expand <!ENTITY  brandShortName        "__MOZ_APP_NAME__">
+#expand <!ENTITY  brandFullName         "__MOZ_APP_NAME__">            
+#expand <!ENTITY  brandShorterName      "SecureBrowser">            
+<!ENTITY  vendorShortName               "SecureBrowser">
+<!ENTITY  trademarkInfo.part1           "Secure Browser and the Secure Browser logos are trademarks of AIR.">
