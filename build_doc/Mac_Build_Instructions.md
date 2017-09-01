@@ -6,7 +6,7 @@
   * Download and install XCode 6.2 and commandline tools for XCode 6.2.
   * Run `sudo xcode-select -switch /Applications/Xcode.app` to point to installed XCode version
   * Perform the one line setup using the following command to install build prerequisites and follow the prompts. If bootstrap fails initially, try once more: `sudo curl https://hg.mozilla.org/mozilla-central/raw-file/default/python/mozboot/bin/bootstrap.py > bootstrap.py && python bootstrap.py`
-      1. It will prompt with options as follows for Firefox type: Type 2 for desktop
+      1. It will prompt with the following options. Select option "2" for Firefox for Desktop.
         * Firefox for Desktop Artifact Mode
         * Firefox for Desktop
         * Firefox for Android Artifact Mode
@@ -18,8 +18,8 @@
   * Install latest clang `brew install llvm`. Add clang path to .bash_profile file `export PATH=/usr/local/Cellar/llvm/4.0.1/bin:$PATH`. Check the installed version and update the path accordingly.
   * Install rust version 1.16.0.
       1. Download rust script using `curl -f -L https://static.rust-lang.org/rustup.sh -O`.
-      2. Install 64 bit rust `sh rustup.sh --revision=1.16.0 --prefix=/usr/local/rustc`.     
-      3. Install 32 bit rust `sh rustup.sh --revision=1.16.0 --prefix=/usr/local/rustc32 --with-target=i686-apple-darwin`.
+      2. Install 64 bit rust: `sh rustup.sh --revision=1.16.0 --prefix=/usr/local/rustc`.     
+      3. Install 32 bit rust: `sh rustup.sh --revision=1.16.0 --prefix=/usr/local/rustc32 --with-target=i686-apple-darwin`.
 
 ## Build Process:
 
